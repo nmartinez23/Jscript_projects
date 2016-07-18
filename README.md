@@ -1,2 +1,3 @@
-# Jscript_projects
-Projects using Javascript, JQuery, HTML and CSS
+# Javascript Exercises
+
+Collection of exercises using Javascript, JQuery, HTML and CSS.

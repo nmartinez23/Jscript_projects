@@ -49,6 +49,32 @@
 
   var guessCount = 1;
   var resetButton;
+
+  function checkGuess() {
+    var userGuess = Number(guessField.value);
+    if(guessCount === 1) {
+      guesses.textContent = 'Previous guesses: ';
+    }
+    guesses.textContent += userGuess + ' ';
+
+    if(userGuess === randomNumber) {
+      lastResult.textContent = 'Congrats';
+      lastResult.style.backgroundColor = 'blue';
+      lowOrHi.textContent = '';
+      setGameOver();
+    } else {
+      lastResult.textContent = 'Wrong!';
+      lastResult.style.backgroundColor = 'red';
+      if(userGuess < randomNumber) {
+        lowOrHi.textContent = 'Too low';
+      } else if(userGuess > randomNumber) {
+        lowOrHi.textContent = 'Too high';
+      }
+    }
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+  }
   </script>
 </html>
 

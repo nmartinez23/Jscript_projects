@@ -48,3 +48,11 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+h2 {
+  text-align: center;
+}
+
+a {
+    color: white;
+}

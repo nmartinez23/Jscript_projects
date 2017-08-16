@@ -82,3 +82,34 @@ tape( 'Pie Cloning Factory', t => {
 
   t.end();
 });
+
+
+// Refactored with prototype mixin
+const PiePrototype = {
+  getFlavour () {
+    return this.flavour;
+  },
+};
+
+function Pie ( flavour ) {
+  //return Object.assign( { flavour: flavour }, PiePrototype );
+  return {
+    flavour,
+    ...PiePrototype,
+  };
+}
+
+tape( 'Pie Cloning Factory', t => {
+  let actual, expected;
+  const pie = Pie( 'pizza' );
+
+  actual = pie.getFlavour();
+  expected = 'pizza';
+  t.equal( actual, expected, 'Pie::getFlavour() should return the pie\'s flavour' );
+
+  // because it used a copy of the prototype
+  const pie2 = Pie( 'apple' );
+  t.equal( pie.getFlavour, pie2.getFlavour, 'Pie() should create shallow copy the the prototype' );
+
+  t.end();
+});

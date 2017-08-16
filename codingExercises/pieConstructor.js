@@ -25,3 +25,33 @@ tape( 'Pie Constructor', t => {
 
   t.end();
 });
+
+
+// Refactored with ES6
+class Pie {
+  constructor ( flavour ) {
+    this.flavour = flavour;
+  }
+  
+  getFlavour () {
+    return this.flavour;
+  }
+};
+
+tape( 'Pie Constructor', t => {
+  let actual, expected;
+  const pie = new Pie( 'pizza' );
+
+  actual = pie.getFlavour();
+  expected = 'pizza';
+  t.equal( actual, expected, 'Pie::getFlavour() should return the pie\'s flavour' );
+
+  // because it used a constructor function
+  t.ok( pie instanceof Pie, 'Pie() should create instances of Pie' );
+
+  // because it used a copy of the prototype
+  const pie2 = Pie( 'pizza' );
+  t.equal( pie.getFlavour, pie2.getFlavour, 'Pie() should create shallow copy the the prototype' );
+
+  t.end();
+});

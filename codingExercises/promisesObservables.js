@@ -35,3 +35,73 @@ const printErr = msg => console.error( `ERROR: ${msg}` );
 Rx.Observable.fromEvent( document.getElementById( 'pingBtn' ), 'click' )
 .debounce( () => Rx.Observable.interval( 1000 ) )
 .subscribe( () => printMsg( 'clicked!' ) );
+
+
+/*getNums()
+.map( num => num * 2 )
+.filter( num => num < 8 )
+.concatMap( num => doubleAsync( num ) )
+//.toArray()
+.subscribe( msg => printMsg( msg ), err => printErr( err ) );*/
+
+/*getDataP( 'first', true )
+.then( msg => {
+  printMsg( msg );
+  
+  return getDataP( 'second' );
+  //return 'hijacked!';
+})
+.catch( err => {
+  printErr( err );
+  //return 'repaired!';
+  return getDataP( 'repaired!', true );
+})
+.then( msg => {
+  printMsg( msg );
+})
+.catch( err => {
+  printErr( err );
+})
+;*/
+
+/*getDataWithTwoCallbacks( 'first', false, msg => {
+  printMsg( msg );
+  
+  getDataWithTwoCallbacks( 'second', false, msg => {
+    printMsg( msg );
+    
+    getDataWithTwoCallbacks( 'third', false, msg => {
+      printMsg( msg );
+    }, err => printError( err ));
+  }, err => {
+    printError( err );
+  });
+}, err => {
+  printError( err );
+});*/
+
+/*getData( 'first', false, ( err, msg ) => {
+  if ( err ) {
+    return printErr( err );
+  }
+
+  printMsg( msg );
+  
+  getMoreData( 'second', false, ( err, msg ) => {
+    if ( err ) {
+      return printErr( err );
+    }
+    
+    printMsg( msg );
+    
+    getEvenMoreData( 'third', true, ( err, msg ) => {
+      if ( err ) {
+        return printErr( err );
+      }
+      
+      printMsg( msg );
+    })
+  });
+});*/
+
+console.log( 'Fetching...' );

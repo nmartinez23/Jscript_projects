@@ -24,3 +24,14 @@ let getDataP = ( msg, shouldIErrorOut ) => new Promise( ( resolve, reject ) => {
     return resolve( msg );
   });
 });
+
+const doubleAsync = n => new Promise( res => setTimeout( () => res( n*2 ), 1500 ) )
+let getDataO = ( msg, shouldIErrorOut ) => Rx.Observable.fromPromise( getDataP( msg, shouldIErrorOut ) );
+let getNums = () => Rx.Observable.range(1,5);
+
+const printMsg = msg => console.log( `SUCCESS: ${msg}` );
+const printErr = msg => console.error( `ERROR: ${msg}` );
+
+Rx.Observable.fromEvent( document.getElementById( 'pingBtn' ), 'click' )
+.debounce( () => Rx.Observable.interval( 1000 ) )
+.subscribe( () => printMsg( 'clicked!' ) );
